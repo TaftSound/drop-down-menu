@@ -1,5 +1,13 @@
 body {
-  background-color: aquamarine;
   min-height: 100vh;
   margin: 0px;
+  display: grid;
+  grid-template-rows: 65px 1fr;
+}
+
+.header {
+  background-color: darkgoldenrod;
+}
+.content {
+  background-color: lightgray;
 }
