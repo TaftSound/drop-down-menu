@@ -9,11 +9,11 @@ body {
 }
 
 .header {
-  background-color: lightgray;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .content {
-  background-color: lightgray;
+  background-color: #B0D0D3;
 }
