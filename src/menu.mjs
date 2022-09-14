@@ -8,32 +8,57 @@ const createItem = (itemName, categoryName) => {
   return item
 }
 
-const menu = document.createElement('div')
-menu.classList.add('MENU')
-
-const domMethods = {
-  createCategory: (categoryName) => {
-    const category = document.createElement('div')
-    category.classList.add('CATEGORY')
-    category.textContent = categoryName
-    menu.appendChild(category)
+const createCategory = function (currentMenu, newCategoryName, isCategory, listenerFunction) {
+  const category = document.createElement('div')
+  const categoryName = document.createElement('p')
+  category.classList.add('CATEGORY-CONTAINER')
+  categoryName.classList.add('CATEGORY-NAME')
+  categoryName.textContent = newCategoryName
+  currentMenu.appendChild(category)
+  category.appendChild(categoryName)
+  if (isCategory) {
+    const menuList = document.createElement('div')
+    menuList.classList.add('MENU-LIST')
+    category.appendChild(menuList)
     return {
-      addMenuItem: (itemName) => {
-        const newItem = createItem(itemName, categoryName)
-        category.appendChild(newItem)
+      addMenuItem: (itemName, listenerFunction) => {
+        const newItem = createItem(itemName, newCategoryName)
+        newItem.addEventListener('click', listenerFunction)
+        menuList.appendChild(newItem)
       },
-      addItemListener: (itemName, listenerFunction) => {
-        const item = document.getElementById(`${categoryName}-${itemName}`)
-        item.addEventListener('click', listenerFunction)
-      },
-      getItemElement: () => {
+      getCategoryElement: () => {
         return category
       }
     }
-  },
-  getMenuElement: () => {
-    return menu
+  } else {
+    category.classList.add('TAB')
+    category.addEventListener('click', listenerFunction)
+    return {
+      getTabElement: () => {
+        return category
+      }
+    }
   }
 }
 
-export default domMethods
+const menu = {
+  createMenu: function () {
+    const menuDomElement = document.createElement('div')
+    menuDomElement.classList.add('MENU')
+    return {
+      addCategory: function (categoryName, listenerFunction) {
+        const newCategory = createCategory(menuDomElement, categoryName, true)
+        return newCategory
+      },
+      addTab: function (categoryName, listenerFunction) {
+        const newTab = createCategory(menuDomElement, categoryName, false, listenerFunction)
+        return newTab
+      },
+      getDomElement: function () {
+        return menuDomElement
+      }
+    }
+  }
+}
+
+export default menu

@@ -10,9 +10,22 @@ content.classList.add('content')
 document.body.appendChild(header)
 document.body.appendChild(content)
 
-const projects = menu.createCategory('Food Tasks')
-projects.addMenuItem('Make Pancakes')
-projects.addMenuItem('Get Foods')
-projects.addMenuItem('Drink Water')
+const newMenu = menu.createMenu()
+newMenu.addTab('Home')
+newMenu.addTab('About')
+const clientsCategory = newMenu.addCategory('Clients')
+const servicesCategory = newMenu.addCategory('Services')
+newMenu.addTab('Contact')
+clientsCategory.addMenuItem('Your Mom')
+clientsCategory.addMenuItem('You Dad')
+servicesCategory.addMenuItem('Poop Packaging')
+servicesCategory.addMenuItem('Drop Shipping')
+servicesCategory.addMenuItem('Schmerpin')
 
-header.appendChild(projects.getItemElement())
+header.appendChild(newMenu.getDomElement())
+
+
+// const home = menuOne.createCategory('Home')
+// const about = menuOne.createCategory('About')
+
+// header.appendChild(menu.getMenuElement())
