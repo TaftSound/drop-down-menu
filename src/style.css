@@ -11,9 +11,10 @@ body {
 .header {
   background-color: white;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 10px 15px;
   align-items: center;
 }
 .content {
-  background-color: #B0D0D3;
+  background-color: rgb(50, 50, 60);
 }

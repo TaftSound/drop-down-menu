@@ -41,21 +41,61 @@ const createCategory = function (currentMenu, newCategoryName, isCategory, liste
   }
 }
 
+const createMenuIcon = () => {
+  const iconContainer = document.createElement('div')
+  const lineOne = document.createElement('div')
+  const lineTwo = document.createElement('div')
+  const lineThree = document.createElement('div')
+  iconContainer.classList.add('ICON')
+  iconContainer.appendChild(lineOne)
+  iconContainer.appendChild(lineTwo)
+  iconContainer.appendChild(lineThree)
+  const toggleElementOpen = (domElement) => {
+    if (domElement.classList[1] === 'OPEN') {
+      domElement.classList.remove('OPEN')
+    } else { domElement.classList.add('OPEN') }
+  }
+  return {
+    toggleOpen: (domElement) => {
+      iconContainer.onmousedown = () => {
+        toggleElementOpen(domElement)
+        toggleElementOpen(iconContainer)
+      }
+      iconContainer.ontouchstart = () => {
+        iconContainer.onmousedown = null
+        toggleElementOpen(domElement)
+        toggleElementOpen(iconContainer)
+      }
+    },
+    getDomElement: () => {
+      return iconContainer
+    }
+  }
+}
+
 const menu = {
   createMenu: function () {
-    const menuDomElement = document.createElement('div')
-    menuDomElement.classList.add('MENU')
+    const menuContainer = document.createElement('div')
+    const menuElement = document.createElement('div')
+    menuContainer.classList.add('MENU-CONTAINER')
+    menuElement.classList.add('MENU')
+
+    const menuIcon = createMenuIcon()
+    menuIcon.toggleOpen(menuElement)
+    menuContainer.appendChild(menuIcon.getDomElement())
+    menuContainer.appendChild(menuElement)
+
     return {
       addCategory: function (categoryName, listenerFunction) {
-        const newCategory = createCategory(menuDomElement, categoryName, true)
+        const newCategory = createCategory(menuElement, categoryName, true)
         return newCategory
       },
       addTab: function (categoryName, listenerFunction) {
-        const newTab = createCategory(menuDomElement, categoryName, false, listenerFunction)
+        const newTab = createCategory(menuElement, categoryName, false, listenerFunction)
         return newTab
       },
       getDomElement: function () {
-        return menuDomElement
+        return menuContainer
       }
     }
   }

@@ -24,7 +24,6 @@ servicesCategory.addMenuItem('Music Production')
 
 header.appendChild(newMenu.getDomElement())
 
-
 // const home = menuOne.createCategory('Home')
 // const about = menuOne.createCategory('About')
 
