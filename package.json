@@ -1,12 +1,13 @@
 {
-  "name": "drop-down-menu",
-  "version": "1.0.0",
+  "name": "@taftsound/menu",
+  "version": "1.0.5",
   "description": "",
-  "main": "index.js",
+  "main": "./src/menu.mjs",
+  "module": "./src/menu.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "webpack serve --open"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --open --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,10 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.0"
-  }
+    "webpack-dev-server": "^4.11.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "files": [
+    "/src/menu*"
+  ]
 }

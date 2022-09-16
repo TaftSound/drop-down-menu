@@ -74,7 +74,7 @@ const createMenuIcon = () => {
 }
 
 const menu = {
-  createMenu: function () {
+  createMenu: () => {
     const menuContainer = document.createElement('div')
     const menuElement = document.createElement('div')
     menuContainer.classList.add('MENU-CONTAINER')
@@ -86,15 +86,15 @@ const menu = {
     menuContainer.appendChild(menuElement)
 
     return {
-      addCategory: function (categoryName, listenerFunction) {
+      addCategory: (categoryName, listenerFunction) => {
         const newCategory = createCategory(menuElement, categoryName, true)
         return newCategory
       },
-      addTab: function (categoryName, listenerFunction) {
+      addTab: (categoryName, listenerFunction) => {
         const newTab = createCategory(menuElement, categoryName, false, listenerFunction)
         return newTab
       },
-      getDomElement: function () {
+      getDomElement: () => {
         return menuContainer
       }
     }
